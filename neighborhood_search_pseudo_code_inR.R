@@ -1,15 +1,18 @@
 ## Peudocode for Visium ST neighborhood search
 source(queue.R) # Implementation of Queue data structure in R
 
+# Run this function to Get Result
+# neighorhood_spots = BFS_neighorhood(start_points, coordinate_df, max_distanc)
+
 ####################################################
 ## Main Search Algorithm
 ####################################################
-BFS = function(start_points, coordinate_df, max_distance){
+BFS_neighorhood = function(start_points, coordinate_df, max_distance){
 	# NOTE: start_points will be Named Vector with their "membership" information
 	# 1. Intitialize follow values 
 	spots_membership   = # 1. Result set: Store which "group" does the spot belongs to (Named vector)
 	spots_visit_status = # 2. Visit flag: Store spots visited (Named vector)
-	search_queue       = # 3. Queue: Store spots to visit 
+	search_queue       = enqeueu(start_points) # 3. Queue: Store spots to visit. Started with All the starting/root spots
 	
 	# 2. Repeat till no more spots to visit
 	while( search_queue Not Empty){
