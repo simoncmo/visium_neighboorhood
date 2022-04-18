@@ -2,7 +2,7 @@
 source(queue.R) # Implementation of Queue data structure in R
 
 # Run this function to Get Result
-# neighorhood_spots = BFS_neighorhood(start_points, coordinate_df, max_distanc)
+# neighorhood_spots = BFS_neighorhood(start_points, coordinate_df, max_distance)
 
 ####################################################
 ## Main Search Algorithm
@@ -10,7 +10,7 @@ source(queue.R) # Implementation of Queue data structure in R
 BFS_neighorhood = function(start_points, coordinate_df, max_distance){
 	# NOTE: start_points will be Named Vector with their "membership" information
 	# 1. Intitialize follow values 
-	spots_membership   = # 1. Result set: Store which "group" does the spot belongs to (Named vector)
+	spots_membership   = # 1. Result set: Store which "group" does the spot belongs to (Named vector). Initiate with NA
 	spots_visit_status = # 2. Visit flag: Store spots visited (Named vector)
 	search_queue       = enqeueu(start_points) # 3. Queue: Store spots to visit. Started with All the starting/root spots
 	
@@ -25,8 +25,12 @@ BFS_neighorhood = function(start_points, coordinate_df, max_distance){
 
 		# 4. Loop through All spots that are adjacent and not visited yet
 		for( Each not_visited_spots as new_spot ){
-			# 1. get result by check distance between new_spots with start_points. If the distance it bigger than max_distance than assign NA
+			# 1A Get assignemnt result by check distance between new_spots with start_points. 
+			# - If the distance it bigger than max_distance than assign NA
 			spot_assignemt = GetMembershipAssignment(new_spot, start_points, coordinate_df, max_distance, distance_type = 'Eucleadian')
+			# 1B Assign result to the Result : spots_membership
+			spots_membership = # Assign value for spot_assignemnt 
+			
 			# 2. Set Visited
 			spots_visit_status = # UPDATE new_spot to be visitied
 			# 3. Queue this spot to visit its adjacent spot IF it not too far (aka spot_assignemnt is not NA)
