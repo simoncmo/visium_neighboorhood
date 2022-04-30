@@ -1,5 +1,38 @@
+### Load 
+library(tidyverse)
+library(Seurat)
+library(igraph)
+
+### Load test data
+obj = Seurat::Load10X_Spatial("~/Library/CloudStorage/Box-Box/Ding_Lab/Projects_Current/Spatial_transcriptomics/processed_data/HT260C1/HT260C1Th1K1U1/outs/")
+
+## Time A dist function
+
+time_one_dist = function(n){
+  # Create test frame
+  test_data = data.frame(x = rnorm(n), y = rnorm(n))
+  # test
+  t1 = Sys.time()
+   dist(test_data)
+  return((Sys.time() - t1) %>% as.double)
+}
+
+time_dist = function(test_range = 10){
+    times = 2^(1:test_range) %>% 
+     lapply(time_one_dist) %>% unlist()
+    data.frame(size = 1:test_range, times = times ) 
+}
+time_dist(13) %>% 
+ggplot(aes(x = size, y = times, color = size)) + geom_line() + 
+  theme_bw() + xlab("Size of Data") + ylab("Time (s)")
+
+
+## Adjacency matrix
+igraph::adjacenct
+
+
 ## Peudocode for Visium ST neighborhood search
-source(queue.R) # Implementation of Queue data structure in R
+source('queue.R') # Implementation of Queue data structure in R
 
 # Run this function to Get Result
 # neighorhood_spots = BFS_neighorhood(start_points, coordinate_df, max_distance)
